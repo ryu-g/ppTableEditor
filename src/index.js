@@ -3,10 +3,55 @@ import html2canvas from './html2canvas.min.js'
 
 console.log('hogehoge')
 
+const copyToClipboard = () => {
+  console.log("hdoiuabl")
+  const UniqueURL = document.getElementById("UniqueURL")
+  UniqueURL.select()
+  document.execCommand("Copy")
+  const buttonText = document.getElementById("copybutton")
+  buttonText.innerText = "ｱｧｧｱｲ"
+}
+
 const url = location;
 const params = new URLSearchParams(url.search);
 const directedTableData = params.get('table')
-const requestOptions = {
+const coopybutton = document.getElementById("copybutton")
+coopybutton.addEventListener('click', copyToClipboard)
+const editablePanel = document.getElementsByClassName('editable')
+
+for(let panel of editablePanel){
+  panel.addEventListener('click',() =>{
+    let list = panel.classList
+    switch(list[2]){
+      case "dummy":
+        panel.classList.remove("dummy")
+        panel.classList.add("red")
+        break
+      case "red":
+        panel.classList.remove("red")
+        panel.classList.add("sky")
+        break
+      case "sky":
+        panel.classList.remove("sky")
+        panel.classList.add("yellow")
+        break
+      case "yellow":
+        panel.classList.remove("yellow")
+        panel.classList.add("green")
+        break
+      case "green":
+        panel.classList.remove("green")
+        panel.classList.add("purple")
+        break
+      case "purple":
+        panel.classList.remove("purple")
+        panel.classList.add("dummy")
+        break
+      }
+  })
+}
+
+const requestOptions = { 
   method: 'GET',
   redirect: 'follow',
 }
@@ -55,23 +100,15 @@ const displayTable = (data) =>{
     })
   })
   console.log("end drawing")
-  // captureImage()
+  captureImage()
 }
 
 const captureImage = () =>{
-  const captureTarget = document.getElementById("panelTableContainer")
-  html2canvas(document.querySelector("#panelTableContainer")).then(canvas => {
-    document.body.appendChild(canvas)
+  const captureTarget = document.querySelector("#viewer")
+  html2canvas(document.querySelector("#viewer")).then(canvas => {
+    captureTarget.after(canvas)
     captureTarget.style.display = 'none'
   })
-}
-
-const copyToClipboard = () =>{
-  const copyTarget = document.getElementById("UniqueURL")
-  UniqueURL.select()
-  document.execCommand("Copy")
-  const buttonText = document.getElementById("copybutton")
-  buttonText.innerText = "ｱｧｧｱｲ"
 }
 
 function splitArray(array, part) {

@@ -1,11 +1,11 @@
 body
   color: #fff
-  min-height: 100vh
+  min-height: 60vh
   display: grid
   grid-gap: 10px
-  margin: 0 auto
+  margin: 100px auto
   grid-template-columns: 1fr 1fr
-  place-items: center
+  place-items: start center
   background-color: #000
 
 a, p, span
@@ -14,9 +14,24 @@ a, p, span
   display: block
   text-align: center
 
-#panelTableContainer
+#copybox
+  display: flex
+  margin: 0
+
+canvas
+  margin-top: 20px
+
+
+.panelTableContainer
   margin-top: 20px
   display: inline-grid
+  grid-template-columns: 45px 45px 45px 45px 45px 45px
+  grid-gap: 0px
+  background-color: #000
+
+.preview
+  margin-top: 20px
+  display: grid
   grid-template-columns: 45px 45px 45px 45px 45px 45px
   grid-gap: 0px
   background-color: #000

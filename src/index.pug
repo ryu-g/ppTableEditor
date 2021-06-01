@@ -6,15 +6,26 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title ppEditor
   body 
-    section#viewer
+    section
       a(href = './')
         button#randomDraw() ランダムな盤面を表示する
-      #panelTableContainer
+      .panelTableContainer#viewer
         - for (let i = 0; i < 72; i++)
           .panel
-    section#editor
+        
+      .copybox
+        input#UniqueURL(type="text" value="URL ZONE" readonly)
+        button#copybutton 盤面をｺﾎﾟｲｰ
+    section
       p jodi
-      #panelTableContainer
+      .panelTableContainer#editor
         - for (let i = 0; i < 72; i++)
-          .panel
+          .panel.editable.dummy
+      .preview
+        .panel.red
+        .panel.sky
+        .panel.yellow
+        .panel.green
+        .panel.purple
+        .panel.dummy
 script(src="./index.js") 
