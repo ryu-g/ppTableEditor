@@ -1,14 +1,21 @@
 body
-  min-height: 60vh
+  color: #fff
+  min-height: 100vh
   display: grid
-  grid-template-rows: 20px 1fr
   grid-gap: 10px
-  margin: 20vh auto
+  margin: 0 auto
+  grid-template-columns: 1fr 1fr
   place-items: center
   background-color: #000
 
+a, p, span
+  margin: 0
+  color: #fff
+  display: block
+  text-align: center
+
 #panelTableContainer
-  /* width: 180px */
+  margin-top: 20px
   display: inline-grid
   grid-template-columns: 45px 45px 45px 45px 45px 45px
   grid-gap: 0px
@@ -45,10 +52,8 @@ body
 .deep, .dummy
   background-color: #444
 
-
 pre
   color: aliceblue
-
 
 #hide
   display: none

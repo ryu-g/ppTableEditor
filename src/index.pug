@@ -9,9 +9,12 @@ html(lang="en")
     section#viewer
       a(href = './')
         button#randomDraw() ランダムな盤面を表示する
-      - for (let i = 0; i < 72; i++)
-        .panel hoge
+      #panelTableContainer
+        - for (let i = 0; i < 72; i++)
+          .panel
     section#editor
-      - for (let i = 0; i < 72; i++)
-        .panel hoge
+      p jodi
+      #panelTableContainer
+        - for (let i = 0; i < 72; i++)
+          .panel
 script(src="./index.js") 
