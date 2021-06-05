@@ -12,9 +12,8 @@ html(lang="en")
       .panelTableContainer#viewer
         - for (let i = 0; i < 72; i++)
           .panel
-        
       .copybox
-        input#UniqueURL(type="text" value="URL ZONE" readonly)
+        textArea#UniqueURL(type="text" rows = 5 cols = 35 value="URL ZONE" readonly)
         button#copybutton 盤面をｺﾎﾟｲｰ
     section
       p jodi
