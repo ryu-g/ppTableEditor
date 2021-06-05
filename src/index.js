@@ -69,6 +69,7 @@ const generateFromAPI = () =>{
     })
     .catch(error => console.log('error', error))
 }
+
 const displayTable = (data) =>{
   const panels = document.querySelectorAll('.panel')
   console.log(panels)
@@ -128,7 +129,7 @@ const numbersToTableFormatArray = (numbers) =>{
   const newData = Array.from(numbers)
   const newData_numbered = newData.map( str => parseInt(str, 10) )
   tableData = splitArray(newData_numbered, 6)
-  console.log(tableData)
+  console.log(`[message] loaded data ${tableData}`)
   displayTable(tableData)
   generateURL(url, numbers)
 }
