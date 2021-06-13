@@ -31,7 +31,10 @@ function copyEditedUrlToClipboard(){
 for(let panel of editablePanel){
   panel.addEventListener('click',() =>{
     let list = panel.classList
-    console.log('here is before SWTICH')
+    console.log(panel)
+    console.log(panel.classList)
+    console.log(list[2])
+
     switch(list[2]){
       case "dummy":
         panel.classList.remove("dummy")
