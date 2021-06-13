@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel ./src/index.pug --open"
+    "dev": "parcel ./src/index.pug --open",
+    "start" : "parcel ./src/index.pug --open"
   },
   "author": "",
   "license": "ISC",
