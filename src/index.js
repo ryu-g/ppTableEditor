@@ -31,36 +31,25 @@ function copyEditedUrlToClipboard(){
 for(let panel of editablePanel){
   panel.addEventListener('click',() =>{
     let list = panel.classList
-    console.log(panel)
-    console.log(panel.classList)
-    console.log(list[2])
-
-    switch(list[2]){
-      case "dummy":
-        panel.classList.remove("dummy")
-        panel.classList.add("red")
-        break
-      case "red":
-        panel.classList.remove("red")
-        panel.classList.add("sky")
-        break
-      case "sky":
-        panel.classList.remove("sky")
-        panel.classList.add("yellow")
-        break
-      case "yellow":
-        panel.classList.remove("yellow")
-        panel.classList.add("green")
-        break
-      case "green":
-        panel.classList.remove("green")
-        panel.classList.add("purple")
-        break
-      case "purple":
-        panel.classList.remove("purple")
-        panel.classList.add("dummy")
-        break
-      }
+    if(list.contains("dummy")){
+      panel.classList.remove("dummy")
+      panel.classList.add("red")
+    }else if(list.contains("red")){
+      panel.classList.remove("red")
+      panel.classList.add("sky")
+    }else if(list.contains("sky")){
+      panel.classList.remove("sky")
+      panel.classList.add("yellow")
+    }else if(list.contains("yellow")){
+      panel.classList.remove("yellow")
+      panel.classList.add("green")
+    }else if(list.contains("green")){
+      panel.classList.remove("green")
+      panel.classList.add("purple")
+    }else if(list.contains("purple")){
+      panel.classList.remove("purple")
+      panel.classList.add("dummy")
+    }
     tableViewToNumberStrings(editablePanel)
   })
 }
