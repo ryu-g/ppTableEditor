@@ -13,8 +13,8 @@ html(lang="en")
         - for (let i = 0; i < 72; i++)
           .panel
       .copybox
-        textArea#UniqueURL(type="text" value="URL ZONE" readonly)
-        button#copybutton 盤面をｺﾎﾟｲｰ
+        textArea#URL_random(type="text" value="URL ZONE" readonly)
+        button#copybutton_random ランダムな盤面をｺﾎﾟｲｰ
     section
       p Click to Edit
       .panelTableContainer#editor
@@ -27,4 +27,7 @@ html(lang="en")
         .panel.green
         .panel.purple
         .panel.dummy
+      .copybox
+        textArea#URL_edited(type="text" value="URL ZONE" readonly)
+        button#copybutton_edited 作った盤面をｺﾎﾟｲｰ
 script(src="./index.js") 

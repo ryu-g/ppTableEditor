@@ -4,19 +4,18 @@ import html2canvas from './html2canvas.min.js'
 console.log('hogehoge')
 
 const copyToClipboard = () => {
-  console.log("hdoiuabl")
   const UniqueURL = document.getElementById("UniqueURL")
   UniqueURL.select()
   document.execCommand("Copy")
-  const buttonText = document.getElementById("copybutton")
+  const buttonText = document.getElementById("copybutton_random")
   buttonText.innerText = "ｱｧｧｱｲ"
 }
 
 const url = location;
-const params = new URLSearchParams(url.search);
+const params = new URLSearchParams(url.search)
 const directedTableData = params.get('table')
-const coopybutton = document.getElementById("copybutton")
-coopybutton.addEventListener('click', copyToClipboard)
+const coopybutton_random = document.getElementById("copybutton_random")
+coopybutton_random.addEventListener('click', copyToClipboard)
 const editablePanel = document.getElementsByClassName('editable')
 
 for(let panel of editablePanel){
