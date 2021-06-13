@@ -29,6 +29,8 @@ function copyEditedUrlToClipboard(){
 }
 
 for(let panel of editablePanel){
+  panel.classList.remove("dummy")
+  panel.classList.add("dummy")
   panel.addEventListener('click',() =>{
     let list = panel.classList
     if(list.contains("dummy")){
