@@ -31,6 +31,7 @@ function copyEditedUrlToClipboard(){
 for(let panel of editablePanel){
   panel.addEventListener('click',() =>{
     let list = panel.classList
+    console.log('here is before SWTICH')
     switch(list[2]){
       case "dummy":
         panel.classList.remove("dummy")
@@ -72,7 +73,6 @@ const generateFromAPI = () =>{
     .then(response => response.text())
     .then(result => {
       tableData = JSON.parse(result).table
-      console.log(tableData)
       displayTable(tableData)
       const UniqueID = tableData.join('').replace(/,/g, '')
       generateRandomURL(url, UniqueID)
@@ -82,7 +82,6 @@ const generateFromAPI = () =>{
 
 const displayTable = (data) =>{
   const panels = document.querySelectorAll('.panel')
-  console.log(panels)
   console.log("start drawing")
   data.forEach((line,i) =>{
     line.forEach((element,j) => {
@@ -131,7 +130,7 @@ const numbersToTableFormatArray = (numbers) =>{
   displayTable(tableData)
   generateRandomURL(url, numbers)
 }
-const tableViewToNumberStrings = (table ) =>{
+const tableViewToNumberStrings = (table) =>{
   let editedTableNumberSyrings = ''
   let keyFromVal = ''
   let searchval = ''
@@ -141,7 +140,6 @@ const tableViewToNumberStrings = (table ) =>{
     editedTableNumberSyrings += keyFromVal
   }
   editedTableUrl = editedTableNumberSyrings
-  console.log(editedTableUrl)
   const editedTableUrlParam = document.getElementById('URL_edited')
   editedTableUrlParam.value = `${url.host}?table=${editedTableUrl}`
 }
