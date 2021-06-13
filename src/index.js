@@ -1,22 +1,32 @@
 import './main.sass'
 import html2canvas from './html2canvas.min.js'
 
-console.log('hogehoge')
+const ComparisonSheet = {0:'red',1:'sky',2:"yellow",3:'green',4:'purple',5:'dummy'}
+const url = location;
+const params = new URLSearchParams(url.search)
+const directedTableData = params.get('table')
+const copybutton_random = document.getElementById("copybutton_random")
+copybutton_random.addEventListener('click', copyRandomUrlToClipboard)
+const copybutton_edited = document.getElementById("copybutton_edited")
+copybutton_edited.addEventListener('click', copyEditedUrlToClipboard)
+const editablePanel = document.getElementsByClassName('editable')
+let editedTableUrl = ''
 
-const copyToClipboard = () => {
-  const UniqueURL = document.getElementById("UniqueURL")
-  UniqueURL.select()
+function copyRandomUrlToClipboard(){
+  const URL_random = document.getElementById("URL_random")
+  URL_random.select()
   document.execCommand("Copy")
   const buttonText = document.getElementById("copybutton_random")
   buttonText.innerText = "ｱｧｧｱｲ"
 }
-
-const url = location;
-const params = new URLSearchParams(url.search)
-const directedTableData = params.get('table')
-const coopybutton_random = document.getElementById("copybutton_random")
-coopybutton_random.addEventListener('click', copyToClipboard)
-const editablePanel = document.getElementsByClassName('editable')
+function copyEditedUrlToClipboard(){
+  const URL_edited = document.getElementById('URL_edited')
+  URL_edited.select()
+  document.execCommand("Copy")
+  const buttonText = document.getElementById("copybutton_edited")
+  buttonText.innerText = "ｱｧｧｱｲ"
+  console.log("hofw")
+}
 
 for(let panel of editablePanel){
   panel.addEventListener('click',() =>{
@@ -47,6 +57,7 @@ for(let panel of editablePanel){
         panel.classList.add("dummy")
         break
       }
+    tableViewToNumberStrings(editablePanel)
   })
 }
 
@@ -64,7 +75,7 @@ const generateFromAPI = () =>{
       console.log(tableData)
       displayTable(tableData)
       const UniqueID = tableData.join('').replace(/,/g, '')
-      generateURL(url, UniqueID)
+      generateRandomURL(url, UniqueID)
     })
     .catch(error => console.log('error', error))
 }
@@ -103,34 +114,55 @@ const displayTable = (data) =>{
   captureImage()
 }
 
+const splitArray = (array, part) =>{
+  var tmp = [];
+  for(var i = 0; i < array.length; i += part) {
+      tmp.push(array.slice(i, i + part));
+  }
+  return tmp;
+}
+
+const numbersToTableFormatArray = (numbers) =>{
+  //URLの数字から配列を作る
+  const newData = Array.from(numbers)
+  const newData_numbered = newData.map( str => parseInt(str, 10) )
+  tableData = splitArray(newData_numbered, 6)
+  console.log(`[message] loaded data ${tableData}`)
+  displayTable(tableData)
+  generateRandomURL(url, numbers)
+}
+const tableViewToNumberStrings = (table ) =>{
+  let editedTableNumberSyrings = ''
+  let keyFromVal = ''
+  let searchval = ''
+  for(let panel of table){
+    searchval = panel.classList[2]
+    keyFromVal = Object.keys(ComparisonSheet).reduce(function(r, k) { return ComparisonSheet[k] == searchval ? k : r }, null);
+    editedTableNumberSyrings += keyFromVal
+  }
+  editedTableUrl = editedTableNumberSyrings
+  console.log(editedTableUrl)
+  const editedTableUrlParam = document.getElementById('URL_edited')
+  editedTableUrlParam.value = `${url.host}?table=${editedTableUrl}`
+}
+
+const generateRandomURL = (url, n) =>{
+  const params = new URLSearchParams(url.search)
+  const directedTableData = params.get('table')
+  const randomTableUrlParam = document.getElementById("URL_random")
+  if(directedTableData == null){
+    randomTableUrlParam.value = `${url}?table=${n}`
+  }else{
+    randomTableUrlParam.value = `${url}`
+  }
+}
+
 const captureImage = () =>{
   const captureTarget = document.querySelector("#viewer")
   html2canvas(document.querySelector("#viewer")).then(canvas => {
     captureTarget.after(canvas)
     captureTarget.style.display = 'none'
   })
-}
-
-function splitArray(array, part) {
-    var tmp = [];
-    for(var i = 0; i < array.length; i += part) {
-        tmp.push(array.slice(i, i + part));
-    }
-    return tmp;
-}
-
-const generateURL = (url, n) =>{
-  const uniqueUrlParam = document.getElementById("UniqueURL")
-  uniqueUrlParam.value = `${url}?table=${n}`
-}
-
-const numbersToTableFormatArray = (numbers) =>{
-  const newData = Array.from(numbers)
-  const newData_numbered = newData.map( str => parseInt(str, 10) )
-  tableData = splitArray(newData_numbered, 6)
-  console.log(`[message] loaded data ${tableData}`)
-  displayTable(tableData)
-  generateURL(url, numbers)
 }
 
 if(directedTableData != null ){
