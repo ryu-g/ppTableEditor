@@ -31,6 +31,31 @@ function copyEditedUrlToClipboard(){
 for(let panel of editablePanel){
   panel.classList.remove("dummy")
   panel.classList.add("dummy")
+  panel.oncontextmenu = function(){
+    console.log("こんにちは")
+    let list = panel.classList
+    if(list.contains("dummy")){
+      panel.classList.remove("dummy")
+      panel.classList.add("purple")
+    }else if(list.contains("red")){
+      panel.classList.remove("red")
+      panel.classList.add("dummy")
+    }else if(list.contains("sky")){
+      panel.classList.remove("sky")
+      panel.classList.add("red")
+    }else if(list.contains("yellow")){
+      panel.classList.remove("yellow")
+      panel.classList.add("sky")
+    }else if(list.contains("green")){
+      panel.classList.remove("green")
+      panel.classList.add("yellow")
+    }else if(list.contains("purple")){
+      panel.classList.remove("purple")
+      panel.classList.add("green")
+    }
+    tableViewToNumberStrings(editablePanel)
+    return false
+  }
   panel.addEventListener('click',() =>{
     let list = panel.classList
     if(list.contains("dummy")){
