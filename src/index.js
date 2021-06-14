@@ -37,21 +37,27 @@ for(let panel of editablePanel){
     if(list.contains("dummy")){
       panel.classList.remove("dummy")
       panel.classList.add("purple")
+      refreshPreviewPanelPointer("purple")
     }else if(list.contains("red")){
       panel.classList.remove("red")
       panel.classList.add("dummy")
+      refreshPreviewPanelPointer("dummy")
     }else if(list.contains("sky")){
       panel.classList.remove("sky")
       panel.classList.add("red")
+      refreshPreviewPanelPointer("red")
     }else if(list.contains("yellow")){
       panel.classList.remove("yellow")
       panel.classList.add("sky")
+      refreshPreviewPanelPointer("sky")
     }else if(list.contains("green")){
       panel.classList.remove("green")
       panel.classList.add("yellow")
+      refreshPreviewPanelPointer("yellow")
     }else if(list.contains("purple")){
       panel.classList.remove("purple")
       panel.classList.add("green")
+      refreshPreviewPanelPointer("green")
     }
     tableViewToNumberStrings(editablePanel)
     return false
@@ -61,24 +67,43 @@ for(let panel of editablePanel){
     if(list.contains("dummy")){
       panel.classList.remove("dummy")
       panel.classList.add("red")
+      refreshPreviewPanelPointer("red")
     }else if(list.contains("red")){
       panel.classList.remove("red")
       panel.classList.add("sky")
+      refreshPreviewPanelPointer("sky")
     }else if(list.contains("sky")){
       panel.classList.remove("sky")
       panel.classList.add("yellow")
+      refreshPreviewPanelPointer("yellow")
     }else if(list.contains("yellow")){
       panel.classList.remove("yellow")
       panel.classList.add("green")
+      refreshPreviewPanelPointer("green")
     }else if(list.contains("green")){
       panel.classList.remove("green")
       panel.classList.add("purple")
+      refreshPreviewPanelPointer("purple")
     }else if(list.contains("purple")){
       panel.classList.remove("purple")
       panel.classList.add("dummy")
+      refreshPreviewPanelPointer("dummy")
     }
     tableViewToNumberStrings(editablePanel)
   })
+}
+
+const refreshPreviewPanelPointer = (type) =>{
+  const previewPanels = document.getElementsByClassName('sample')
+  const targetClor = type
+  for ( let panel of previewPanels ){
+    const list = panel.classList
+    if( list.contains( targetClor ) ){
+      panel.classList.add("cursor")
+    }else{
+      panel.classList.remove("cursor")
+    }
+  }
 }
 
 const requestOptions = { 
