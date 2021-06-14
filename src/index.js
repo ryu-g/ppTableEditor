@@ -32,7 +32,6 @@ for(let panel of editablePanel){
   panel.classList.remove("dummy")
   panel.classList.add("dummy")
   panel.oncontextmenu = function(){
-    console.log("こんにちは")
     let list = panel.classList
     if(list.contains("dummy")){
       panel.classList.remove("dummy")
@@ -62,6 +61,22 @@ for(let panel of editablePanel){
     tableViewToNumberStrings(editablePanel)
     return false
   }
+  panel.addEventListener('mouseover',() =>{
+    let list = panel.classList
+    if(list.contains("dummy")){
+      refreshPreviewPanelPointer("dummy")
+    }else if(list.contains("red")){
+      refreshPreviewPanelPointer("red")
+    }else if(list.contains("sky")){
+      refreshPreviewPanelPointer("sky")
+    }else if(list.contains("yellow")){
+      refreshPreviewPanelPointer("yellow")
+    }else if(list.contains("green")){
+      refreshPreviewPanelPointer("green")
+    }else if(list.contains("purple")){
+      refreshPreviewPanelPointer("purple")
+    }
+  })
   panel.addEventListener('click',() =>{
     let list = panel.classList
     if(list.contains("dummy")){
