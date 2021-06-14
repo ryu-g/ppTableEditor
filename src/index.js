@@ -1,5 +1,6 @@
 import './main.sass'
 import html2canvas from './html2canvas.min.js'
+import './favicon.ico'
 
 const ComparisonSheet = {0:'red',1:'sky',2:"yellow",3:'green',4:'purple',5:'dummy'}
 const url = location;
@@ -64,7 +65,7 @@ for(let panel of editablePanel){
   panel.addEventListener('mouseover',() =>{
     let list = panel.classList
     if(list.contains("dummy")){
-      refreshPreviewPanelPointer("dummy")
+      refreshPreviewPanelPointer("red")
     }else if(list.contains("red")){
       refreshPreviewPanelPointer("red")
     }else if(list.contains("sky")){
